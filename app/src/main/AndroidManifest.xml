@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.sahin.learnenglishwords">
+
+    <application
+        android:name=".ObjectPreference"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Pratik" android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PRATIK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Kelimeler"
+            android:label="KELİMELERİM / MY WORDS">
+                <action android:name="android.intent.action.KELIMELER"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+        </activity>
+        <activity android:name=".KelimeKaydet" android:noHistory="true"
+            android:label="KELİME KAYDET / SAVE WORD">
+            <intent-filter>
+                <action android:name="android.intent.action.KELIMEKAYDET"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

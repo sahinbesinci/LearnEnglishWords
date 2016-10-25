@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <TextView
+        android:text="İNGİLİZCE KELİME / ENGLİSH WORD"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:gravity="center"
+        android:layout_marginTop="30dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="İngilizce"
+        android:ems="10"
+        android:id="@+id/etIngilizce"
+        android:gravity="center"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        />
+
+    <TextView
+        android:text="TÜRKÇE ANLAMI / TURKISH MEANING"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:gravity="center"
+        android:layout_marginTop="25dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Türkçe"
+        android:ems="10"
+        android:id="@+id/etTurkce"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:gravity="center" />
+
+    <Button
+        android:text="KAYDET / SAVE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnKaydet"
+        android:layout_margin="25dp" />
+</LinearLayout>
