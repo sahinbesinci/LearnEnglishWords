@@ -40,6 +40,7 @@ public class KelimeKaydet extends AppCompatActivity {
         btnKaydet.setOnClickListener(btnKaydetListener);
         etIngilizce = (EditText) findViewById(R.id.etIngilizce);
         etTurkce = (EditText) findViewById(R.id.etTurkce);
+        etIngilizce.setText(getIntent().getExtras().getString("searchString").toString());
     }
     private View.OnClickListener btnKaydetListener = new View.OnClickListener() {
         @Override

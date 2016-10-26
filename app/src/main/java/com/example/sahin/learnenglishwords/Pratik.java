@@ -1,17 +1,21 @@
 package com.example.sahin.learnenglishwords;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +27,11 @@ import java.util.Random;
  */
 
 public class Pratik extends FragmentActivity {
-    TextView tvKelime,tvHata;
+    TextView tvKelime,tvHata,tvProgressStatus;
     EditText etCevap;
     Button btnSorgula,btnGec;
+    ProgressBar pbKelimeler;
+    int pbSayac = 0;
 
     private Random randomGenerator;
     ArrayList<Integer> listRandomInteger;
@@ -63,12 +69,20 @@ public class Pratik extends FragmentActivity {
         btnGec = (Button) findViewById(R.id.btnGec);
         btnGec.setOnClickListener(btnGecListener);
 
+        pbKelimeler = (ProgressBar) findViewById(R.id.pbKelimeler);
+        tvProgressStatus = (TextView) findViewById(R.id.tvProgressStatus);
+
         complexPrefenreces = objectPreference.getComplexPreference();
         listComplexPreferences = new ArrayList<>();
         listComplexPreferences = complexPrefenreces.getAllObject(Kelime.class);
         gecilenKelimeler = new ArrayList<>();
         listRandomInteger = new ArrayList<>();
         randomGenerator = new Random();
+
+        pbKelimeler.setMax(listComplexPreferences.size());
+        tvProgressStatus.setText("0/"+pbKelimeler.getMax());
+        pbKelimeler.setProgress(pbSayac);
+
         sonrakiSoru();
 
         tvHata.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +109,10 @@ public class Pratik extends FragmentActivity {
             if (etCevap.getText().toString().equals(kelime.getTurkce()))
             {
                 kelime.setDogru();
+
+                pbSayac++;
+                pbKelimeler.setProgress(pbSayac);
+                tvProgressStatus.setText(pbSayac +"/"+pbKelimeler.getMax());
 
                 ComplexPreferences complexPrefenreces = objectPreference.getComplexPreference();
                 if(complexPrefenreces != null) {
@@ -149,7 +167,22 @@ public class Pratik extends FragmentActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        fragmentManager.popBackStack();
+        new AlertDialog.Builder(Pratik.this)
+                .setTitle("Çıkış")
+                .setMessage("Pratikten çıkmak istediğine emin misin?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        fragmentManager.popBackStack();
+                        Pratik.this.finish();
+                    }
+                })
+                .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                })
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+
     }
 }

@@ -37,6 +37,7 @@ public class Kelimeler extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Kelimeler.this,KelimeKaydet.class);
+                i.putExtra("searchString",searchView.getQuery().toString());
                 startActivity(i);
             }
         });
@@ -59,12 +60,13 @@ public class Kelimeler extends AppCompatActivity {
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
 
-                                String key = listComplexPreferences.get(position).getIngilizce();
-                                complexPrefenreces.removeObject(key);
+                                Kelime kelime = kelimelerBaseAdapter.getItem(position);
+                                complexPrefenreces.removeObject(kelime.getIngilizce());
                                 complexPrefenreces.commit();
-                                listComplexPreferences.remove(position);
+                                listComplexPreferences.remove(kelime);
                                 kelimelerBaseAdapter.notifyDataSetChanged();
                                 Toast.makeText(getApplicationContext(),"Silindi",Toast.LENGTH_SHORT).show();
+                                Kelimeler.this.kelimelerBaseAdapter.getFilter().filter(sAramaListener.toString());
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
