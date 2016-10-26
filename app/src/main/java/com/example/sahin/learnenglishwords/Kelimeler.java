@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ import java.util.List;
 public class Kelimeler extends AppCompatActivity {
     ListView lvKelimeler;
     public KelimelerBaseAdapter kelimelerBaseAdapter;
+    SearchView searchView;
     private ObjectPreference objectPreference;
     ComplexPreferences complexPrefenreces;
+
     ArrayList<Kelime> listComplexPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +78,24 @@ public class Kelimeler extends AppCompatActivity {
                 return false;
             }
         });
+        searchView = (SearchView) findViewById(R.id.sArama);
+        searchView.setOnQueryTextListener(sAramaListener);
+
     }
+
+
+    private SearchView.OnQueryTextListener sAramaListener = new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            Kelimeler.this.kelimelerBaseAdapter.getFilter().filter(newText);
+            return false;
+        }
+    };
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -5,22 +5,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by sahin on 21.10.2016.
  */
 
-public class KelimelerBaseAdapter extends BaseAdapter {
-    ArrayList<Kelime> myList = new ArrayList();
-    LayoutInflater inflater;
-    Context context;
+public class KelimelerBaseAdapter extends BaseAdapter implements Filterable {
+    private ArrayList<Kelime> myList = new ArrayList();
+    private ArrayList<Kelime> filterList = new ArrayList<>();
+    private LayoutInflater inflater;
+    private Context context;
 
 
     public KelimelerBaseAdapter(Context context, ArrayList<Kelime> myList) {
+        this.filterList = myList;
         this.myList = myList;
         this.context = context;
         inflater = LayoutInflater.from(this.context);
@@ -28,12 +31,12 @@ public class KelimelerBaseAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return myList.size();
+        return filterList != null ? filterList.size():0;
     }
 
     @Override
     public Kelime getItem(int position) {
-        return myList.get(position);
+        return filterList.get(position);
     }
 
     @Override
@@ -53,7 +56,7 @@ public class KelimelerBaseAdapter extends BaseAdapter {
             mViewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        Kelime currentListData = getItem(position);
+        Kelime currentListData = filterList.get(position);
 
         mViewHolder.tvIng.setText(currentListData.getIngilizce());
         mViewHolder.tvTr.setText(currentListData.getTurkce());
@@ -71,4 +74,49 @@ public class KelimelerBaseAdapter extends BaseAdapter {
             tvSayi = (TextView) item.findViewById(R.id.tvSayi);
         }
     }
+    @Override
+    public Filter getFilter() {
+        return new Filter()
+        {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence)
+            {
+                FilterResults results = new FilterResults();
+
+                if(charSequence == null || charSequence.length() == 0)
+                {
+                    results.values = myList;
+                    results.count = myList.size();
+                }
+                else
+                {
+                    ArrayList<Kelime> filterResultsData = new ArrayList<>();
+
+                    for(Kelime data : myList)
+                    {
+                        if (data.getIngilizce().length() >= charSequence.length())
+                        {
+                            if(data.getIngilizce().substring(0,charSequence.length()).equals(charSequence.toString()))
+                            {
+                                filterResultsData.add(data);
+                            }
+                        }
+                    }
+                    results.values = filterResultsData;
+                    results.count = filterResultsData.size();
+                }
+
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults)
+            {
+                filterList = (ArrayList<Kelime>)filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
 }

@@ -6,6 +6,8 @@ package com.example.sahin.learnenglishwords;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +87,7 @@ public class ComplexPreferences {
                     String prefStr = preferences.getString(str, null);
                     kelimes.add(GSON.fromJson(prefStr,a));
                 }
+                Collections.sort(kelimes, (Comparator<? super T>) new Sort());
                 return kelimes;
             }
             catch (Exception e) {
@@ -92,4 +95,6 @@ public class ComplexPreferences {
                         + " is instance of other class");
             }
         }
-    } }
+    }
+
+}
