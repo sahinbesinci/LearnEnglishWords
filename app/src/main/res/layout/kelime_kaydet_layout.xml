@@ -47,8 +47,16 @@
 
     <Button
         android:text="KAYDET / SAVE"
-        android:layout_width="match_parent"
+        android:layout_width="182dp"
         android:layout_height="wrap_content"
         android:id="@+id/btnKaydet"
-        android:layout_margin="25dp" />
+        android:layout_gravity="center"
+        android:layout_margin="25dp"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5" />
 </LinearLayout>

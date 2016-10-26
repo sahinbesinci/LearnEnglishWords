@@ -22,7 +22,14 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnPratikYap"
         android:layout_margin="25dp"
-        android:layout_weight="0.09" />
+        android:layout_weight="0.09"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"/>
 
     <Button
         android:text="KELİMELER / WORDS"
@@ -30,5 +37,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnKelimeler"
         android:layout_margin="25dp"
-        android:layout_weight="0.09" />
+        android:layout_weight="0.09"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:background="@drawable/buttonshape"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5" />
 </LinearLayout>
