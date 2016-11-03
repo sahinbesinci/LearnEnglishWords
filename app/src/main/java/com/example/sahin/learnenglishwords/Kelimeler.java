@@ -72,7 +72,7 @@ public class Kelimeler extends AppCompatActivity {
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // do nothing
+                                dialog.cancel();
                             }
                         })
                         .setIcon(android.R.drawable.ic_dialog_alert)
