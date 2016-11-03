@@ -23,6 +23,7 @@ public class Kelimeler extends AppCompatActivity {
     SearchView searchView;
     private ObjectPreference objectPreference;
     ComplexPreferences complexPrefenreces;
+    String sArama="";
 
     ArrayList<Kelime> listComplexPreferences;
     @Override
@@ -66,7 +67,7 @@ public class Kelimeler extends AppCompatActivity {
                                 listComplexPreferences.remove(kelime);
                                 kelimelerBaseAdapter.notifyDataSetChanged();
                                 Toast.makeText(getApplicationContext(),"Silindi",Toast.LENGTH_SHORT).show();
-                                Kelimeler.this.kelimelerBaseAdapter.getFilter().filter(sAramaListener.toString());
+                                Kelimeler.this.kelimelerBaseAdapter.getFilter().filter(sArama);
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -95,6 +96,7 @@ public class Kelimeler extends AppCompatActivity {
         @Override
         public boolean onQueryTextChange(String newText) {
             Kelimeler.this.kelimelerBaseAdapter.getFilter().filter(newText);
+            sArama=newText;
             return false;
         }
     };

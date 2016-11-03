@@ -1,8 +1,10 @@
 package com.example.sahin.learnenglishwords;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -43,8 +45,24 @@ public class Main extends Activity{
             if (listComplexPreferences.size()==0)
                 Toast.makeText(getApplicationContext(),"Lütfen kelime kaydet.",Toast.LENGTH_LONG).show();
             else {
-                Intent i = new Intent(Main.this,Pratik.class);
-                startActivity(i);
+                new AlertDialog.Builder(Main.this)
+                        .setTitle("Alıştırma Türü")
+                        .setMessage("Türkçe mi yoksa ingilizce anlamı mı tahmin etmek istersin?")
+                        .setPositiveButton("İngilizce", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Main.this,Pratik.class);
+                                i.putExtra("Tur","Eng");
+                                startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Türkçe", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Main.this,Pratik.class);
+                                i.putExtra("Tur","Turkce");
+                                startActivity(i);
+                            }
+                        })
+                        .show();
             }
 
         }

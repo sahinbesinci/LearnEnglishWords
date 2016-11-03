@@ -75,6 +75,8 @@ public class Pratik extends FragmentActivity {
         complexPrefenreces = objectPreference.getComplexPreference();
         listComplexPreferences = new ArrayList<>();
         listComplexPreferences = complexPrefenreces.getAllObject(Kelime.class);
+        if (!getIntent().getExtras().getString("Tur").toString().equals("Turkce"))
+            kelimeleriKaristir();
         gecilenKelimeler = new ArrayList<>();
         listRandomInteger = new ArrayList<>();
         randomGenerator = new Random();
@@ -92,6 +94,18 @@ public class Pratik extends FragmentActivity {
             }
         });
     }
+
+    private void kelimeleriKaristir()
+    {
+        ArrayList<Kelime> tmpList = new ArrayList<>();
+        for (Kelime k:listComplexPreferences) {
+            Kelime yeniKelime = new Kelime(k.getTurkce(),k.getIngilizce());
+            tmpList.add(yeniKelime);
+        }
+        listComplexPreferences.clear();
+        listComplexPreferences.addAll(tmpList);
+    }
+
 
     private View.OnClickListener btnGecListener = new View.OnClickListener() {
         @Override
@@ -113,14 +127,6 @@ public class Pratik extends FragmentActivity {
                 pbSayac++;
                 pbKelimeler.setProgress(pbSayac);
                 tvProgressStatus.setText(pbSayac +"/"+pbKelimeler.getMax());
-
-                ComplexPreferences complexPrefenreces = objectPreference.getComplexPreference();
-                if(complexPrefenreces != null) {
-                    String ingilizce = kelime.getIngilizce().toString();
-                    complexPrefenreces.putObject(ingilizce, kelime);
-                    complexPrefenreces.commit();
-                }else
-                    Toast.makeText(getApplicationContext(),"Hata Meydana Geldi",Toast.LENGTH_SHORT).show();
 
                 sonrakiSoru();
                 Sayac = 0;
