@@ -27,7 +27,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/content"
-        android:gravity="center"
+        android:gravity="top|center"
+        android:layout_marginTop="10dp"
         android:visibility="visible"
         android:weightSum="1">
 
@@ -54,10 +55,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:id="@+id/tvKelime"
-            android:layout_margin="25dp"/>
+            android:id="@+id/tvKelime"/>
 
         <EditText
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
@@ -65,7 +66,10 @@
             android:ems="10"
             android:id="@+id/etCevap"
             android:gravity="center_horizontal"
-            android:layout_margin="25dp" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="#37c1e3f2"/>
 
         <Button
             android:text="DOĞRU MU / IS IT TRUE ?"
@@ -91,9 +95,11 @@
 
         <Button
             android:text="GEÇ / SKIP"
+            android:layout_gravity="right"
             android:layout_width="145dp"
             android:layout_height="29dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/btnGec"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
