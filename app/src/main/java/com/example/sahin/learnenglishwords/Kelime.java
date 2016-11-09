@@ -17,6 +17,13 @@ public class Kelime {
         Dogru = 0;
         Yanlis = 0;
     }
+    Kelime(String ing, String tur, int dogru, int yanlis)
+    {
+        Ingilizce = ing;
+        Turkce = tur;
+        Dogru = dogru;
+        Yanlis = yanlis;
+    }
 
     public int getDogru(){return this.Dogru;}
     public void setDogru(){this.Dogru++;}
@@ -24,4 +31,6 @@ public class Kelime {
     public void setYanlis(){this.Yanlis++;}
     public String getIngilizce(){return this.Ingilizce;}
     public String getTurkce(){return this.Turkce;}
+    public void setIngilizce(String Ingilizce){this.Ingilizce = Ingilizce;}
+    public void setTurkce(String Turkce){this.Turkce = Turkce;}
 }

@@ -128,6 +128,16 @@ public class Pratik extends FragmentActivity {
                 pbKelimeler.setProgress(pbSayac);
                 tvProgressStatus.setText(pbSayac +"/"+pbKelimeler.getMax());
 
+                String ingilizce = kelime.getIngilizce().toString();
+                Kelime yeniKelime = kelime;
+                if (!getIntent().getExtras().getString("Tur").toString().equals("Turkce"))
+                {
+                    ingilizce = kelime.getTurkce().toString();
+                    yeniKelime = new Kelime(kelime.getTurkce(),kelime.getIngilizce(),kelime.getDogru(),kelime.getYanlis());
+                }
+                complexPrefenreces.putObject(ingilizce, yeniKelime);
+                complexPrefenreces.commit();
+
                 sonrakiSoru();
                 Sayac = 0;
             }
@@ -138,6 +148,17 @@ public class Pratik extends FragmentActivity {
                 if (Sayac == 3)
                 {
                     kelime.setYanlis();
+
+                    String ingilizce = kelime.getIngilizce().toString();
+                    Kelime yeniKelime = kelime;
+                    if (!getIntent().getExtras().getString("Tur").toString().equals("Turkce"))
+                    {
+                        ingilizce = kelime.getTurkce().toString();
+                        yeniKelime = new Kelime(kelime.getTurkce(),kelime.getIngilizce(),kelime.getDogru(),kelime.getYanlis());
+                    }
+                    complexPrefenreces.putObject(ingilizce, yeniKelime);
+                    complexPrefenreces.commit();
+
                     Sayac = 0;
                 }
             }
