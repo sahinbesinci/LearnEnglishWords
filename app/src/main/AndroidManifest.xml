@@ -10,14 +10,22 @@
         android:supportsRtl="true"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <activity android:name=".Main" android:screenOrientation="portrait">
+
+
+        <activity
+            android:name=".Main"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Pratik" android:noHistory="true" android:screenOrientation="portrait" android:windowSoftInputMode="stateVisible">
+        <activity
+            android:name=".Pratik"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.PRATIK" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -30,9 +38,11 @@
                 <action android:name="android.intent.action.KELIMELER"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>
         </activity>
-        <activity android:name=".KelimeKaydet" android:noHistory="true"
+        <activity
+            android:name=".KelimeKaydet" android:noHistory="true"
             android:label="KELİME KAYDET / SAVE WORD"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible">
             <intent-filter>
                 <action android:name="android.intent.action.KELIMEKAYDET"></action>
                 <category android:name="android.intent.category.DEFAULT"></category>

@@ -17,12 +17,12 @@
         android:layout_marginBottom="90dp"/>
 
     <Button
-        android:text="PRATİK YAP / PRACTİCE"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnPratikYap"
         android:layout_margin="25dp"
         android:layout_weight="0.09"
+        android:text="PRATİK / PRACTICE"
         android:textColor="#FFFFFF"
         android:textSize="22sp"
         android:background="@drawable/buttonshape"

@@ -1,23 +1,117 @@
 package com.example.sahin.learnenglishwords;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AlertDialog;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 
-public class Kelimeler extends AppCompatActivity {
+public class Kelimeler extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+
+    //This is our tablayout
+    private TabLayout tabLayout;
+
+    //This is our viewPager
+    private ViewPager viewPager;
+    Pager adapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        setContentView(R.layout.kelimeler_tab_layout);
+        //Adding toolbar to the activity
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //Initializing the tablayout
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+
+        //Adding the tabs using addTab() method
+        tabLayout.addTab(tabLayout.newTab().setText("TEKRAR ETTİKLERİM"));
+        tabLayout.addTab(tabLayout.newTab().setText("EZBERDEKİLER"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+
+        //Initializing viewPager
+        viewPager = (ViewPager) findViewById(R.id.pager);
+
+        //Creating our pager adapter
+        adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        //Adding adapter to pager
+        viewPager.setAdapter(adapter);
+        viewPager.setPageTransformer(true, new RotateUpTransformer());
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                if (state == 1)
+                {
+                    if (viewPager.getCurrentItem() == 0)
+                        adapter.tab2.updateFragmentListView();
+                    else if (viewPager.getCurrentItem() == 1)
+                        adapter.tab1.updateFragmentListView();
+                }
+            }
+        });
+        //Adding onTabSelectedListener to swipe views
+        tabLayout.setOnTabSelectedListener(this);
+    }
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+        if (viewPager.getCurrentItem() == 0)
+            adapter.tab2.updateFragmentListView();
+        else if (viewPager.getCurrentItem() == 1)
+            adapter.tab1.updateFragmentListView();
+    }
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
     ListView lvKelimeler;
     public KelimelerBaseAdapter kelimelerBaseAdapter;
     SearchView searchView;
@@ -112,5 +206,4 @@ public class Kelimeler extends AppCompatActivity {
         super.onResume();
         kelimelerBaseAdapter.notifyDataSetChanged();
     }
-
-}
+*/

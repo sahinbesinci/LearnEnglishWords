@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Learn English Words</string>
     <string name="title_activity_main">MainActivity</string>
+    <string-array name="order" >
+        <item>İngilizce Sıralama</item>
+        <item>Tükçe Sıralama</item>
+        <item>Doğru Sayısı</item>
+        <item>Yanlış Sayısı</item>
+    </string-array>
 </resources>

@@ -16,6 +16,7 @@
         android:layout_marginStart="14dp"
         android:layout_marginTop="13dp"
         android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:id="@+id/tvIng" />
 
     <TextView
@@ -23,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/tvTr"
+        android:textColor="#FFFFFF"
         android:layout_below="@+id/tvIng"
         android:layout_alignLeft="@+id/tvIng"
         android:layout_alignStart="@+id/tvIng" />
@@ -34,6 +36,7 @@
         android:layout_marginRight="35dp"
         android:layout_marginEnd="35dp"
         android:id="@+id/tvSayi"
+        android:textColor="#FFFFFF"
         android:layout_alignBottom="@+id/tvTr"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

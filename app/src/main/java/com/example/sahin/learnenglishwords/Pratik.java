@@ -49,6 +49,13 @@ public class Pratik extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         setContentView(R.layout.pratik_layout);
         objectPreference = (ObjectPreference) this.getApplication();
 
@@ -99,8 +106,8 @@ public class Pratik extends FragmentActivity {
     {
         ArrayList<Kelime> tmpList = new ArrayList<>();
         for (Kelime k:listComplexPreferences) {
-            Kelime yeniKelime = new Kelime(k.getTurkce(),k.getIngilizce());
-            tmpList.add(yeniKelime);
+            k.mixWord(k.getIngilizce(),k.getTurkce());
+            tmpList.add(k);
         }
         listComplexPreferences.clear();
         listComplexPreferences.addAll(tmpList);
@@ -128,14 +135,11 @@ public class Pratik extends FragmentActivity {
                 pbKelimeler.setProgress(pbSayac);
                 tvProgressStatus.setText(pbSayac +"/"+pbKelimeler.getMax());
 
-                String ingilizce = kelime.getIngilizce().toString();
-                Kelime yeniKelime = kelime;
                 if (!getIntent().getExtras().getString("Tur").toString().equals("Turkce"))
-                {
-                    ingilizce = kelime.getTurkce().toString();
-                    yeniKelime = new Kelime(kelime.getTurkce(),kelime.getIngilizce(),kelime.getDogru(),kelime.getYanlis());
-                }
-                complexPrefenreces.putObject(ingilizce, yeniKelime);
+                    kelime.mixWord(kelime.getIngilizce(),kelime.getTurkce());
+
+                String ingilizce = kelime.getIngilizce().toString();
+                complexPrefenreces.putObject(ingilizce, kelime);
                 complexPrefenreces.commit();
 
                 sonrakiSoru();
@@ -149,14 +153,11 @@ public class Pratik extends FragmentActivity {
                 {
                     kelime.setYanlis();
 
-                    String ingilizce = kelime.getIngilizce().toString();
-                    Kelime yeniKelime = kelime;
                     if (!getIntent().getExtras().getString("Tur").toString().equals("Turkce"))
-                    {
-                        ingilizce = kelime.getTurkce().toString();
-                        yeniKelime = new Kelime(kelime.getTurkce(),kelime.getIngilizce(),kelime.getDogru(),kelime.getYanlis());
-                    }
-                    complexPrefenreces.putObject(ingilizce, yeniKelime);
+                        kelime.mixWord(kelime.getIngilizce(),kelime.getTurkce());
+
+                    String ingilizce = kelime.getIngilizce().toString();
+                    complexPrefenreces.putObject(ingilizce, kelime);
                     complexPrefenreces.commit();
 
                     Sayac = 0;

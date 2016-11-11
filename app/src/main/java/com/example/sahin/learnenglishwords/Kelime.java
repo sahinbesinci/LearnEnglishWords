@@ -17,18 +17,16 @@ public class Kelime {
         Dogru = 0;
         Yanlis = 0;
     }
-    Kelime(String ing, String tur, int dogru, int yanlis)
+    public void mixWord(String ing, String tur)
     {
-        Ingilizce = ing;
-        Turkce = tur;
-        Dogru = dogru;
-        Yanlis = yanlis;
+        Ingilizce = tur;
+        Turkce = ing;
     }
 
     public int getDogru(){return this.Dogru;}
-    public void setDogru(){this.Dogru++;}
+    public void setDogru(){++this.Dogru;}
     public int getYanlis(){return this.Yanlis;}
-    public void setYanlis(){this.Yanlis++;}
+    public void setYanlis(){++this.Yanlis;}
     public String getIngilizce(){return this.Ingilizce;}
     public String getTurkce(){return this.Turkce;}
     public void setIngilizce(String Ingilizce){this.Ingilizce = Ingilizce;}
