@@ -2,12 +2,10 @@ package com.example.sahin.learnenglishwords;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.NotificationCompat;
-import android.util.Log;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +38,7 @@ public class TekrarEttigimKelimelerFragment extends Fragment{
     View rootView;
     Spinner spinner;
     int spinnerSecim = 0;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.activity_main, container, false);
@@ -72,6 +71,9 @@ public class TekrarEttigimKelimelerFragment extends Fragment{
         listComplexPreferences = complexPrefenreces.getAllObject(Kelime.class);
         kelimelerBaseAdapter = new KelimelerBaseAdapter(getActivity(), listComplexPreferences);
         lvKelimeler.setAdapter(kelimelerBaseAdapter);
+
+
+
 
         lvKelimeler.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

@@ -4,19 +4,18 @@ package com.example.sahin.learnenglishwords;
  * Created by sahin on 21.10.2016.
  */
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
-
-import android.content.Context;
-import android.content.SharedPreferences;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 
 public class ComplexPreferences {
     private static ComplexPreferences       complexPreferences;
