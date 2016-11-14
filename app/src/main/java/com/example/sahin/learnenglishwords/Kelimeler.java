@@ -4,17 +4,19 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.ToxicBakery.viewpager.transforms.RotateUpTransformer;
 
-public class Kelimeler extends AppCompatActivity implements TabLayout.OnTabSelectedListener {
+public class Kelimeler extends ActionBarActivity implements TabLayout.OnTabSelectedListener {
 
     //This is our tablayout
     private TabLayout tabLayout;

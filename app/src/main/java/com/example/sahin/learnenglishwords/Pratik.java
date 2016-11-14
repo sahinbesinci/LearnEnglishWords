@@ -160,6 +160,9 @@ public class Pratik extends FragmentActivity {
                     complexPrefenreces.putObject(ingilizce, kelime);
                     complexPrefenreces.commit();
 
+                    if (!getIntent().getExtras().getString("Tur").toString().equals("Turkce"))
+                        kelime.mixWord(kelime.getIngilizce(),kelime.getTurkce());
+
                     Sayac = 0;
                 }
             }

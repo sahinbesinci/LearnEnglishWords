@@ -18,6 +18,6 @@
         app:srcCompat="@android:drawable/ic_menu_add"
         app:backgroundTint="?android:attr/colorPrimaryDark" />
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main"/>
 
 </android.support.design.widget.CoordinatorLayout>
